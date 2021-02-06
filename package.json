@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
-    "prettier": "npx prettier --write ."
+    "prettier": "npx prettier --write .",
+    "deploy": "node deploy.js"
   },
   "dependencies": {
     "next": "10.0.6",
