@@ -1,0 +1,7 @@
+.tshero {
+  background: url(/images/header_2x.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 73vw;
+  max-height: 100vh;
+}
