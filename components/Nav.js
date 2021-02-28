@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const NavLinks = ({ onClick }) => (
   <>
-  <li className="mr-3">
+    <li className="mr-3">
       <Link
         className="inline-block py-2 px-4 text-black no-underline"
         href="/#"
@@ -35,9 +35,7 @@ const NavLinks = ({ onClick }) => (
 );
 
 const TeamShadowLogo = () => (
-  <div
-    className="toggleColour no-underline hover:no-underline text-black font-bold text-2xl lg:text-4xl"
-  >
+  <div className="toggleColour no-underline hover:no-underline text-black font-bold text-2xl lg:text-4xl">
     <>
       <span className="logo-team-text">team</span>
       <span className="logo-shadow-text">Shadow</span>
@@ -71,9 +69,11 @@ const Nav = () => {
             </svg>
           </button>
         </div>
-        <Link href="/#"><h1 className="cursor-pointer">
-          <TeamShadowLogo />
-        </h1></Link>
+        <Link href="/#">
+          <h1 className="cursor-pointer">
+            <TeamShadowLogo />
+          </h1>
+        </Link>
         <div
           className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20"
           id="nav-content"

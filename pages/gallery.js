@@ -33,9 +33,9 @@ const galleries = [
 
 const Gallery = () => (
   <>
-  <Head>
-        <title>Team Shadow Racing - Media Gallery</title>
-      </Head>
+    <Head>
+      <title>Team Shadow Racing - Media Gallery</title>
+    </Head>
     <Nav />
     <div className="pt-16 w-full">
       {galleries.map(({ title, photos }) => (
