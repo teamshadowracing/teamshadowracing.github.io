@@ -1,4 +1,3 @@
-import Image from "next/image";
 import clsx from "clsx";
 
 import Nav from "../components/Nav";
@@ -34,10 +33,10 @@ const galleries = [
 const Gallery = () => (
   <>
     <Nav />
-    <div className="pt-16 w-full container mx-auto">
+    <div className="pt-16 w-full">
       {galleries.map(({ title, photos }) => (
         <div>
-          <h2 className="text-4xl pb-4 pt-12">{title}</h2>
+          <h2 className="text-4xl pb-4 pt-12 pl-4">{title}</h2>
           <div
             className={clsx(
               "grid grid-flow-col",
@@ -48,11 +47,11 @@ const Gallery = () => (
               <div
                 style={{
                   position: "relative",
-                  objectFit: "contain",
-                  height: "24vw",
+                  overflow: "hidden",
+                  height: "28vw",
                 }}
               >
-                <Image src={src} layout="fill" objectFit="cover" />
+                <img src={src} style={{objectFit: "contain", width: "53vw"}} />
               </div>
             ))}
           </div>

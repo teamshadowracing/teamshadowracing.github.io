@@ -1,5 +1,6 @@
 module.exports = {
-    images: {
-      domains: ['i.imgur.com', 'imgur.com'],
-    },
-  }
+  images: {
+    loader: "imgix",
+    domains: ["i.imgur.com", "imgur.com"],
+  },
+};
