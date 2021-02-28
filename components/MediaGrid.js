@@ -4,27 +4,27 @@ import clsx from 'clsx'
 const media = [
   {
     type: "image",
-    src: "/images/portfolio/fullsize/1.jpg",
+    src: "https://i.imgur.com/rWcENu9.jpg",
   },
   {
     type: "image",
-    src: "/images/portfolio/fullsize/2.jpg",
+    src: "https://i.imgur.com/xPC0vdr.jpg",
   },
   {
     type: "image",
-    src: "/images/portfolio/fullsize/3.jpg",
+    src: "https://imgur.com/Qm5vKff.jpg",
   },
   {
     type: "image",
-    src: "/images/portfolio/fullsize/4.jpg",
+    src: "https://i.imgur.com/gKnHdj1.jpg",
   },
   {
     type: "image",
-    src: "/images/portfolio/fullsize/5.jpg",
+    src: "https://i.imgur.com/j2gntCE.jpg",
   },
   {
     type: "image",
-    src: "/images/portfolio/fullsize/6.jpg",
+    src: "https://i.imgur.com/RgVaOJF.jpg",
   },
 ];
 

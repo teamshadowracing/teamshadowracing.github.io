@@ -1,16 +1,33 @@
+import React, { useRef, useEffect } from "react";
+import Link from "next/link";
+
 import styles from "../styles/Home.module.css";
 
 import Nav from "../components/Nav";
 import Card from "../components/Card";
+import Footer from "../components/Footer";
 import { Cog, Video, Flag, Graph } from "../components/Icons";
 import MediaGrid from "../components/MediaGrid";
 
 export default function Home() {
+  const myRef = useRef();
+
+  function scrollToComponent() {
+    if (window.location.hash === "#about") {
+      myRef.current.scrollIntoView();
+      myRef.current.focus();
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }
+
+  useEffect(() => scrollToComponent(), []);
+
   return (
     <>
+      <Nav />
       <div className={styles.tshero}>
-        <Nav />
-        <div className="pt-14 sm:pt-36 md:pt-48 lg:pt-60 xl:pt-72">
+        <div className="pt-14 sm:pt-36 md:pt-48 lg:pt-60 xl:pt-72 text-white">
           <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
             <div className="flex flex-col w-full justify-center text-center items-start text-center md:text-left">
               <h1 className="my-4 text-xl md:text-5xl font-bold leading-tight text-center mx-auto uppercase">
@@ -26,7 +43,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-blue-500">
+      <div className="bg-blue-500" id="about" ref={myRef}>
         <div className="container mx-auto px-6 text-center py-20">
           <h2 className="mb-6 text-4xl font-bold text-center text-white">
             We like to go fast!
@@ -35,9 +52,11 @@ export default function Home() {
             We race everything from iRacing to Forza and drive fun cars on the
             streets.
           </h3>
-          <button className="bg-white text-gray-800 font-bold rounded-full mt-6 py-4 px-8 shadow-lg uppercase tracking-wider">
-            See Our Races
-          </button>
+          <Link href="https://www.youtube.com/channel/UCaje4yLTTxVJT4bf7PXDk6g">
+            <button className="bg-white text-gray-800 font-bold rounded-full mt-6 py-4 px-8 shadow-lg uppercase tracking-wider">
+              Watch on YouTube
+            </button>
+          </Link>
         </div>
       </div>
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
@@ -65,22 +84,21 @@ export default function Home() {
           </Card>
         </div>
       </div>
+      <a name="gallery" />
       <MediaGrid />
       <div className="bg-gray-800">
         <div className="container mx-auto px-6 text-center py-20">
           <h2 className="mb-6 text-4xl font-bold text-center text-white">
             Watch More
           </h2>
-          <a href="https://www.youtube.com/channel/UCaje4yLTTxVJT4bf7PXDk6g" className="bg-white text-gray-800 font-bold rounded-full mt-6 py-4 px-8 shadow-lg uppercase tracking-wider">
-            Visit Our Youtube Channel
-          </a>
+          <Link href="/gallery">
+            <button className="bg-white text-gray-800 font-bold rounded-full mt-6 py-4 px-8 shadow-lg uppercase tracking-wider">
+              View More Pictures
+            </button>
+          </Link>
         </div>
       </div>
-      <div className="bg-white">
-        <div className="container mx-auto px-6 text-center py-10 text-gray-800">
-          <p>&copy; Team Shadow Racing 2011-{(new Date()).getFullYear()}</p>
-        </div>
-      </div>
+      <Footer />
     </>
   );
 }

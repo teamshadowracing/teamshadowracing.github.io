@@ -11,7 +11,7 @@ class MyDocument extends Document {
       <Html>
         <Head />
         <body
-          className="leading-normal tracking-normal text-white gradient"
+          className="leading-normal tracking-normal"
           style={{ fontFamily: "Source Sans Pro, sans-Serif" }}
         >
           <Main />
