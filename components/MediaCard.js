@@ -1,12 +1,18 @@
 const MediaCard = ({ src }) => (
   <div
     style={{
-      position: "relative",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "50vw",
       height: "28vw",
-      overflow: "hidden"
+      overflow: "hidden",
     }}
   >
-    <img src={src} style={{objectFit: "contain", width: "53vw"}} />
+    <img
+      src={src}
+      style={{ flexShrink: "0", minWidth: "100%", minHeight: "100%" }}
+    />
   </div>
 );
 

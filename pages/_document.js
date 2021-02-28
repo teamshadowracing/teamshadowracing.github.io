@@ -9,9 +9,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <title>Team Shadow Racing</title>
-        </Head>
+        <Head />
         <body
           className="leading-normal tracking-normal"
           style={{ fontFamily: "Source Sans Pro, sans-Serif" }}

@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import Link from "next/link";
+import Head from "next/head";
 
 import styles from "../styles/Home.module.css";
 
@@ -9,6 +10,33 @@ import Footer from "../components/Footer";
 import { Cog, Video, Flag, Graph } from "../components/Icons";
 import MediaGrid from "../components/MediaGrid";
 
+const media = [
+  {
+    type: "image",
+    src: "https://i.imgur.com/rWcENu9.jpg",
+  },
+  {
+    type: "image",
+    src: "https://i.imgur.com/xPC0vdr.jpg",
+  },
+  {
+    type: "image",
+    src: "https://imgur.com/Qm5vKff.jpg",
+  },
+  {
+    type: "image",
+    src: "https://i.imgur.com/gKnHdj1.jpg",
+  },
+  {
+    type: "image",
+    src: "https://i.imgur.com/j2gntCE.jpg",
+  },
+  {
+    type: "image",
+    src: "https://i.imgur.com/RgVaOJF.jpg",
+  },
+];
+
 export default function Home() {
   const myRef = useRef();
 
@@ -17,7 +45,7 @@ export default function Home() {
       myRef.current.scrollIntoView();
       myRef.current.focus();
     } else {
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     }
   }
 
@@ -25,6 +53,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Team Shadow Racing - Home</title>
+      </Head>
       <Nav />
       <div className={styles.tshero}>
         <div className="pt-14 sm:pt-36 md:pt-48 lg:pt-60 xl:pt-72 text-white">
@@ -84,12 +115,11 @@ export default function Home() {
           </Card>
         </div>
       </div>
-      <a name="gallery" />
-      <MediaGrid />
+      <MediaGrid media={media} />
       <div className="bg-gray-800">
         <div className="container mx-auto px-6 text-center py-20">
           <h2 className="mb-6 text-4xl font-bold text-center text-white">
-            Watch More
+            Want to see more?
           </h2>
           <Link href="/gallery">
             <button className="bg-white text-gray-800 font-bold rounded-full mt-6 py-4 px-8 shadow-lg uppercase tracking-wider">
