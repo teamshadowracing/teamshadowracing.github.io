@@ -2,12 +2,14 @@ import { useState } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 
+import TeamShadowLogo from "./TeamShadowLogo";
+
 const NavLinks = ({ onClick }) => (
   <>
     <li className="mr-3">
       <Link
         className="inline-block py-2 px-4 text-black no-underline"
-        href="/#"
+        href="/"
         onClick={onClick}
       >
         Home
@@ -16,7 +18,7 @@ const NavLinks = ({ onClick }) => (
     <li className="mr-3">
       <Link
         className="inline-block py-2 px-4 text-black no-underline"
-        href="/#about"
+        href="/about"
         onClick={onClick}
       >
         About
@@ -32,15 +34,6 @@ const NavLinks = ({ onClick }) => (
       </Link>
     </li>
   </>
-);
-
-const TeamShadowLogo = () => (
-  <div className="toggleColour no-underline hover:no-underline text-black font-bold text-2xl lg:text-4xl">
-    <>
-      <span className="logo-team-text">team</span>
-      <span className="logo-shadow-text">Shadow</span>
-    </>
-  </div>
 );
 
 const Nav = () => {

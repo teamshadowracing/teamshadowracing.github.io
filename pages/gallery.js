@@ -4,40 +4,13 @@ import MediaGrid from "../components/MediaGrid";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 
-const galleries = [
-  {
-    title: "2021 Hyundai Elantra N Line",
-    photos: [
-      { src: "https://imgur.com/wcqQOPL.jpg", type: "image" },
-      { src: "https://imgur.com/Qm5vKff.jpg", type: "image" },
-      { src: "https://imgur.com/HvBYFrS.jpg", type: "image" },
-      { src: "https://imgur.com/rmzQItr.jpg", type: "image" },
-      { src: "https://imgur.com/LqFbDtu.jpg", type: "image" },
-      { src: "https://imgur.com/Oo4NXTp.jpg", type: "image" },
-      { src: "https://imgur.com/9c9Nwkw.jpg", type: "image" },
-      { src: "https://imgur.com/F07NF6O.jpg", type: "image" },
-    ],
-  },
-  {
-    title: "Highlight Photos",
-    photos: [
-      { src: "https://imgur.com/j2gntCE.jpg", type: "image" },
-      { src: "https://imgur.com/RgVaOJF.jpg", type: "image" },
-      { src: "https://imgur.com/xPC0vdr.jpg", type: "image" },
-      { src: "https://imgur.com/rWcENu9.jpg", type: "image" },
-      { src: "https://imgur.com/gKnHdj1.jpg", type: "image" },
-      { src: "https://imgur.com/Hp5WwwK.jpg", type: "image" },
-    ],
-  },
-];
-
-const Gallery = () => (
+const Gallery = ({ galleries }) => (
   <>
     <Head>
       <title>Team Shadow Racing - Media Gallery</title>
     </Head>
     <Nav />
-    <div className="pt-16 w-full">
+    <div className="pt-16 w-full container mx-auto">
       {galleries.map(({ title, photos }) => (
         <MediaGrid title={title} media={photos} />
       ))}
@@ -45,5 +18,46 @@ const Gallery = () => (
     <Footer />
   </>
 );
+
+const getImgurAlbum = async (albumHash) => {
+  const response = await fetch(`https://api.imgur.com/3/album/${albumHash}`, {
+    method: "GET",
+    cache: "no-cache",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Client-ID ${process.env.IMGUR_CLIENT}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("IMGUR API ERROR: " + response.status);
+  }
+
+  const {
+    data: { title, images },
+  } = await response.json();
+
+  return {
+    title: title,
+    photos: images.map(({ link: src, description: alt }) => ({
+      src,
+      alt,
+      thumbnail: [src.slice(0, -4), "l", src.slice(-4)].join(""),
+    })),
+  };
+};
+
+export async function getStaticProps() {
+  const galleries = [
+    await getImgurAlbum("Y5Qa7dG"),
+    await getImgurAlbum("QtESV61"),
+  ];
+
+  return {
+    props: {
+      galleries,
+    },
+  };
+}
 
 export default Gallery;

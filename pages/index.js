@@ -13,44 +13,31 @@ import MediaGrid from "../components/MediaGrid";
 const media = [
   {
     type: "image",
-    src: "https://i.imgur.com/rWcENu9.jpg",
+    src: "https://i.imgur.com/rWcENu9l.jpg",
   },
   {
     type: "image",
-    src: "https://i.imgur.com/xPC0vdr.jpg",
+    src: "https://i.imgur.com/xPC0vdrl.jpg",
   },
   {
     type: "image",
-    src: "https://imgur.com/Qm5vKff.jpg",
+    src: "https://imgur.com/Qm5vKffl.jpg",
   },
   {
     type: "image",
-    src: "https://i.imgur.com/gKnHdj1.jpg",
+    src: "https://i.imgur.com/gKnHdj1l.jpg",
   },
   {
     type: "image",
-    src: "https://i.imgur.com/j2gntCE.jpg",
+    src: "https://i.imgur.com/j2gntCEl.jpg",
   },
   {
     type: "image",
-    src: "https://i.imgur.com/RgVaOJF.jpg",
+    src: "https://i.imgur.com/RgVaOJFl.jpg",
   },
 ];
 
 export default function Home() {
-  const myRef = useRef();
-
-  function scrollToComponent() {
-    if (window.location.hash === "#about") {
-      myRef.current.scrollIntoView();
-      myRef.current.focus();
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }
-
-  useEffect(() => scrollToComponent(), []);
-
   return (
     <>
       <Head>
@@ -66,7 +53,8 @@ export default function Home() {
               </h1>
               <p className="leading-normal md:text-2xl mb-8 text-center mx-auto">
                 <span className="bg-blue-500">
-                  Team Shadow Racing is an online and real life car club. <br />
+                  Team Shadow is an online and real life automotive
+                  organization. <br />
                   We strive to be the best.
                 </span>
               </p>
@@ -74,7 +62,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-blue-500" id="about" ref={myRef}>
+      <div className="bg-blue-500">
         <div className="container mx-auto px-6 text-center py-20">
           <h2 className="mb-6 text-4xl font-bold text-center text-white">
             We like to go fast!
@@ -115,7 +103,9 @@ export default function Home() {
           </Card>
         </div>
       </div>
-      <MediaGrid media={media} />
+      <div className="container mx-auto">
+        <MediaGrid media={media} />
+      </div>
       <div className="bg-gray-800">
         <div className="container mx-auto px-6 text-center py-20">
           <h2 className="mb-6 text-4xl font-bold text-center text-white">
