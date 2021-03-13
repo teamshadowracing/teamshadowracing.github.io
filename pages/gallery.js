@@ -1,6 +1,9 @@
+import { useState, useCallback } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
+import MediaGallery from "react-photo-gallery";
+import Carousel, { Modal, ModalGateway } from "react-images";
 
 import MediaGrid from "../components/MediaGrid";
 import Nav from "../components/Nav";
@@ -13,6 +16,19 @@ const Gallery = ({ galleries }) => {
   const {
     query: { id: currentGalleryId },
   } = useRouter();
+
+  const [currentImage, setCurrentImage] = useState(0);
+  const [viewerIsOpen, setViewerIsOpen] = useState(false);
+
+  const openLightbox = useCallback((event, { photo, index }) => {
+    setCurrentImage(index);
+    setViewerIsOpen(true);
+  }, []);
+
+  const closeLightbox = () => {
+    setCurrentImage(0);
+    setViewerIsOpen(false);
+  };
 
   const currentGallery = galleries.find(
     (gallery) => gallery.id === currentGalleryId
@@ -30,42 +46,84 @@ const Gallery = ({ galleries }) => {
       <Nav />
       <div className="pt-24 w-full container mx-auto">
         {!currentGallery && (
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
-            {galleries.map(({ title, id, photos }, index) => (
-              <div className="text-center" key={index}>
-                <Link href={{ pathname: "/gallery", query: { id } }}>
-                  <a>
-                    <img
-                      className="rounded-md shadow-lg"
-                      src={photos[0].thumbnail}
-                      alt={photos[0].alt}
-                      style={{ height: 200, margin: "auto" }}
-                    />{" "}
-                    {title}
-                  </a>
-                </Link>
-              </div>
-            ))}
+          <div>
+            <h2 className="text-4xl pb-4 pt-4 pl-4 team-shadow-header">
+              Media Gallery
+            </h2>
+            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+              {galleries.map(({ title, id, photos }, index) => (
+                <div className="text-center" key={index}>
+                  <Link href={{ pathname: "/gallery", query: { id } }}>
+                    <a>
+                      <img
+                        className="rounded-md shadow-lg"
+                        src={photos[0].thumbnail}
+                        alt={photos[0].alt}
+                        style={{ height: 200, margin: "auto" }}
+                      />{" "}
+                      {title}
+                    </a>
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
         )}
         {currentGallery && (
-          <>
-            <Link href="/gallery">
-              <a className="textLink">
-                <span className="icon">{Back}</span> Back to all galleries
-              </a>
-            </Link>
+          <div>
             {currentGallery.title && (
-              <h2 className="text-4xl pb-4 pt-12 pl-4">
+              <h2 className="text-4xl pb-4 pt-4 pl-4 team-shadow-header">
                 {currentGallery.title}
               </h2>
             )}
-            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
-              {currentGallery.photos.map(({ src, alt, thumbnail }, index) => (
-                <img key={index} src={thumbnail} alt={alt} />
-              ))}
+            <div className="hidden md:block">
+              <MediaGallery
+                onClick={openLightbox}
+                photos={currentGallery.photos.map(
+                  ({ alt, width, height, thumbnail }) => ({
+                    alt,
+                    width,
+                    height,
+                    src: thumbnail,
+                  })
+                )}
+              />
             </div>
-          </>
+            <div className="block md:hidden">
+              <MediaGrid media={currentGallery.photos.map(
+                  ({ alt, width, height, thumbnail }) => ({
+                    alt,
+                    width,
+                    height,
+                    src: thumbnail,
+                  })
+                )} />
+            </div>
+            <ModalGateway>
+              {viewerIsOpen ? (
+                <Modal onClose={closeLightbox}>
+                  <Carousel
+                    currentIndex={currentImage}
+                    views={currentGallery.photos.map(
+                      ({ alt, width, height, src }) => ({
+                        alt,
+                        width,
+                        height,
+                        src,
+                        caption: alt,
+                      })
+                    )}
+                  />
+                </Modal>
+              ) : null}
+            </ModalGateway>
+            <Link href="/gallery">
+              <a className="inline-flex items-center h-8 px-4 m-2 text-sm text-pink-100 transition-colors duration-150 bg-pink-700 rounded-lg focus:shadow-outline hover:bg-pink-800">
+                <span className="icon pr-1">{Back}</span>
+                <span>Back to all galleries</span>
+              </a>
+            </Link>
+          </div>
         )}
       </div>
       <Footer />

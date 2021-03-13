@@ -20,7 +20,7 @@ const MediaCard = ({ src, alt, thumbnail }) => (
         minHeight: "100%",
         position: "absolute",
         top: "0",
-        lelft: "0",
+        left: "0",
       }}
     />
   </div>

@@ -17,7 +17,10 @@ export default function Home({ media }) {
     <>
       <Head>
         <title>Team Shadow Racing - Home</title>
-        <meta name="Description" content="Team Shadow is an online and real life automotive organization. Visit our website to see images, videos, and learn more about Team Shadow."></meta>
+        <meta
+          name="Description"
+          content="Team Shadow is an online and real life automotive organization. Visit our website to see images, videos, and learn more about Team Shadow."
+        ></meta>
       </Head>
       <Nav />
       <div className={styles.tshero}>
