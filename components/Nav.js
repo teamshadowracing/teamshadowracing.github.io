@@ -62,7 +62,7 @@ const Nav = () => {
             </svg>
           </button>
         </div>
-        <Link href="/#">
+        <Link href="/">
           <h1 className="cursor-pointer">
             <TeamShadowLogo />
           </h1>
