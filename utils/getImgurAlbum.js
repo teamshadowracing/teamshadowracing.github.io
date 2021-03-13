@@ -24,7 +24,9 @@ const getImgurAlbum = async (albumHash) => {
       alt,
       width,
       height,
+      square: [src.slice(0, -4), "s", src.slice(-4)].join(""),
       thumbnail: [src.slice(0, -4), "l", src.slice(-4)].join(""),
+      lowThumbnail: [src.slice(0, -4), "m", src.slice(-4)].join(""),
     })),
   };
 };

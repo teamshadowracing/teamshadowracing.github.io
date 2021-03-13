@@ -4,8 +4,8 @@ import Link from "next/link";
 import Head from "next/head";
 import MediaGallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
+import ProgressiveImage from 'react-progressive-image'
 
-import MediaGrid from "../components/MediaGrid";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import { Back } from "../components/Icons";
@@ -90,14 +90,12 @@ const Gallery = ({ galleries }) => {
               />
             </div>
             <div className="block md:hidden">
-              <MediaGrid media={currentGallery.photos.map(
-                  ({ alt, width, height, thumbnail }) => ({
-                    alt,
-                    width,
-                    height,
-                    src: thumbnail,
-                  })
-                )} />
+              {currentGallery.photos.map(
+                ({ alt, src, lowThumbnail }) =>
+                  <ProgressiveImage src={src}>
+                    {(src, loading) => loading ? <img style={{width: '100%'}} src={lowThumbnail} alt={alt} /> : <img src={src} alt={alt} />}
+                  </ProgressiveImage>
+              )}
             </div>
             <ModalGateway>
               {viewerIsOpen ? (
