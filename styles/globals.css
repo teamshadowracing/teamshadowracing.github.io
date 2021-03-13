@@ -27,3 +27,20 @@
   font-size: 54px;
   font-family: "Racing Sans One", cursive;
 }
+
+.icon svg {
+  width: 1em;
+  height: 1em;
+  display: inline;
+  position: relative;
+  bottom: 2px;
+}
+
+a.textLink {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.imgGrid img {
+  float: left
+}

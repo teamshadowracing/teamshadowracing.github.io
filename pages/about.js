@@ -67,15 +67,15 @@ export default function About() {
           culture at home. And Team Shadow wants to bring that culture to you!
           Visit the{" "}
           <Link href="https://www.youtube.com/channel/UCaje4yLTTxVJT4bf7PXDk6g">
-            <span className="underline text-blue-500 cursor-pointer">
+            <a className="textLink" >
               YouTube
-            </span>
+            </a>
           </Link>{" "}
           channel to see videos of our pilots and check out our{" "}
           <Link href="/gallery">
-            <span className="underline text-blue-500 cursor-pointer">
+            <a className="textLink" >
               Gallery
-            </span>
+            </a>
           </Link>{" "}
           to see our virtual and real world vehicles.
         </p>

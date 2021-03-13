@@ -13,11 +13,12 @@ const getImgurAlbum = async (albumHash) => {
     }
   
     const {
-      data: { title, images },
+      data: { title, images, id },
     } = await response.json();
   
     return {
-      title: title,
+      id,
+      title,
       photos: images.map(({ link: src, description: alt }) => ({
         src,
         alt,
