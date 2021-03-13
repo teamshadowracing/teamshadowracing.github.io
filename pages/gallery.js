@@ -4,10 +4,13 @@ import MediaGrid from "../components/MediaGrid";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 
+import getImgurAlbum from "../utils/getImgurAlbum";
+
 const Gallery = ({ galleries }) => (
   <>
     <Head>
       <title>Team Shadow Racing - Media Gallery</title>
+      <meta name="Description" content="Team Shadow is an online and real life automotive organization. Visit our website gallery to see pictures of our cars in video games and real life."></meta>
     </Head>
     <Nav />
     <div className="pt-16 w-full container mx-auto">
@@ -18,34 +21,6 @@ const Gallery = ({ galleries }) => (
     <Footer />
   </>
 );
-
-const getImgurAlbum = async (albumHash) => {
-  const response = await fetch(`https://api.imgur.com/3/album/${albumHash}`, {
-    method: "GET",
-    cache: "no-cache",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Client-ID ${process.env.IMGUR_CLIENT}`,
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("IMGUR API ERROR: " + response.status);
-  }
-
-  const {
-    data: { title, images },
-  } = await response.json();
-
-  return {
-    title: title,
-    photos: images.map(({ link: src, description: alt }) => ({
-      src,
-      alt,
-      thumbnail: [src.slice(0, -4), "l", src.slice(-4)].join(""),
-    })),
-  };
-};
 
 export async function getStaticProps() {
   const galleries = [

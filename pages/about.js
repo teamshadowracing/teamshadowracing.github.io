@@ -13,6 +13,7 @@ export default function About() {
     <>
       <Head>
         <title>Team Shadow Racing - About</title>
+        <meta name="Description" content="Team Shadow is an online and real life automotive organization. Visit our website more about Team Shadow vision, history, and future."></meta>
       </Head>
       <Nav />
       <div className="bg-pink-600 text-white mb-6">

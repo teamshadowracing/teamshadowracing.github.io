@@ -7,7 +7,7 @@ const MediaCard = ({ src, alt, thumbnail }) => (
       overflow: "hidden",
       width: "100%",
       height: "0",
-      paddingTop: "56.25%",
+      paddingTop: "53.9%",
       position: "relative",
     }}
   >

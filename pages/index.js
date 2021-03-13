@@ -10,38 +10,14 @@ import Footer from "../components/Footer";
 import { Cog, Video, Flag, Graph } from "../components/Icons";
 import MediaGrid from "../components/MediaGrid";
 
-const media = [
-  {
-    type: "image",
-    src: "https://i.imgur.com/rWcENu9l.jpg",
-  },
-  {
-    type: "image",
-    src: "https://i.imgur.com/xPC0vdrl.jpg",
-  },
-  {
-    type: "image",
-    src: "https://imgur.com/Qm5vKffl.jpg",
-  },
-  {
-    type: "image",
-    src: "https://i.imgur.com/gKnHdj1l.jpg",
-  },
-  {
-    type: "image",
-    src: "https://i.imgur.com/j2gntCEl.jpg",
-  },
-  {
-    type: "image",
-    src: "https://i.imgur.com/RgVaOJFl.jpg",
-  },
-];
+import getImgurAlbum from "../utils/getImgurAlbum";
 
-export default function Home() {
+export default function Home({ media }) {
   return (
     <>
       <Head>
         <title>Team Shadow Racing - Home</title>
+        <meta name="Description" content="Team Shadow is an online and real life automotive organization. Visit our website to see images, videos, and learn more about Team Shadow."></meta>
       </Head>
       <Nav />
       <div className={styles.tshero}>
@@ -49,10 +25,10 @@ export default function Home() {
           <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
             <div className="flex flex-col w-full justify-center text-center items-start text-center md:text-left">
               <h1 className="my-4 text-xl md:text-5xl font-bold leading-tight text-center mx-auto uppercase">
-                <span className="bg-blue-500">AUTOMOTIVE FUN</span>
+                <span className="bg-blue-800 px-1">AUTOMOTIVE FUN</span>
               </h1>
               <p className="leading-normal md:text-2xl mb-8 text-center mx-auto">
-                <span className="bg-blue-500">
+                <span className="bg-blue-800 px-1">
                   Team Shadow is an online and real life automotive
                   organization. <br />
                   We strive to be the best.
@@ -121,4 +97,14 @@ export default function Home() {
       <Footer />
     </>
   );
+}
+
+export async function getStaticProps() {
+  const gallery = await getImgurAlbum("QtESV61");
+
+  return {
+    props: {
+      media: gallery.photos,
+    },
+  };
 }
